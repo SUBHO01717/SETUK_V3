@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Service - Maintenance </h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / <a href="{% url 'services' %}" class="text-decoration-none text-white fw-bold">Services</a>  / Maintenance</p>
+       
+    </div>
+
+
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-0">
+                <img src="{% static 'images/maintenance.jpg' %}" class="card-img-top" alt="About Us">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 p-5">
+            <h1 class=" pb-3">Professional Solar System Maintenance</h1>
+            <p class="fs-5 pb-3">Keep your solar investment operating at peak performance with our comprehensive maintenance services. Our team of experienced technicians ensures your solar system continues to generate clean, renewable energy efficiently, maximizing your savings and environmental impact.</p>
+            <p class="fs-5 pb-3">Ensure the longevity and efficiency of your solar investment with our professional maintenance services. Contact us today to schedule a maintenance plan tailored to your needs!</p>
+            <div>
+                <h5>Regular Inspections</h5>
+                <hr>
+                <p>We conduct routine inspections to assess the condition of your solar panels, inverters, and electrical components. Our thorough evaluations identify any issues early, preventing potential problems and optimizing system performance.</p>
+            </div>
+            <div>
+                <h5>Cleaning and Panel Maintenance</h5>
+                <hr>
+                <p>We perform professional cleaning of solar panels to remove dirt, debris, and buildup that can reduce energy production. Additionally, we inspect panels for damage or wear and perform necessary maintenance to ensure optimal functionality.</p>
+            </div>
+         
+            <div>
+                <h5>Performance Monitoring</h5>
+                <hr>
+                <p>Our advanced monitoring systems track the performance of your solar system in real-time, allowing us to detect any deviations or inefficiencies promptly. We provide regular reports and analysis to keep you informed of your system's performance.</p>
+            </div>
+            <div>
+                <h5>System Upgrades and Repairs</h5>
+                <hr>
+                <p>If your solar system requires upgrades or repairs, our technicians are equipped to handle any necessary maintenance tasks. From replacing faulty components to upgrading to the latest technology, we ensure your system operates optimally.</p>
+            </div>
+            <div>
+                <h5>Emergency Services</h5>
+                <hr>
+                <p>In the event of unexpected issues or emergencies, our team is available to provide prompt assistance and support. We prioritize your satisfaction and strive to resolve any issues efficiently to minimize downtime and disruption.</p>
+            </div>
+          
+            <a href="" class="btn btn-primary btn-lg">Contact Us !</a>
+        </div>
+    </div>
+
+  
+    
+</div>
+
+
+
+
+
+{% endblock content %}

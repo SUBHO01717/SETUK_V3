@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Service - Installation </h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / <a href="{% url 'services' %}" class="text-decoration-none text-white fw-bold">Services</a>  / Installation</p>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-0">
+                <img src="{% static 'images/installation.jpg' %}" class="card-img-top" alt="About Us">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 p-5">
+            <h1 class=" pb-3">Professional Solar System Installation</h1>
+            <p class="fs-5 pb-3">Harness the power of the sun with our expert solar system installation services. Whether for residential or commercial properties, we provide comprehensive solutions tailored to your energy needs and budget.</p>
+            <p class="fs-5 pb-3">Experience the advantages of clean, renewable energy with our professional solar system installation services. Contact us today to schedule a consultation!</p>
+            <div>
+                <h5>Site Evaluation</h5>
+                <hr>
+                <p>Our experienced technicians conduct a thorough assessment of your property to determine the optimal placement for solar panels, maximizing sunlight exposure and energy efficiency.</p>
+            </div>
+            <div>
+                <h5>Custom Design</h5>
+                <hr>
+                <p>We customize a solar system design based on your specific energy requirements, available space, and aesthetic preferences. Our designs prioritize efficiency and seamless integration with your property.</p>
+            </div>
+         
+            <div>
+                <h5>Quality Installation</h5>
+                <hr>
+                <p>Our certified installers meticulously install solar panels, inverters, and electrical components with precision and attention to detail. We adhere to industry best practices and safety standards throughout the installation process.</p>
+            </div>
+            <div>
+                <h5>Grid Connection</h5>
+                <hr>
+                <p>Once installed, we ensure seamless integration with the grid, enabling you to benefit from net metering and sell excess energy back to the utility company. Our team handles all necessary permits and paperwork for grid connection.</p>
+            </div>
+            <div>
+                <h5>System Testing and Commissioning</h5>
+                <hr>
+                <p>We conduct comprehensive testing to ensure your solar system operates optimally. We verify performance metrics and provide guidance on system monitoring and maintenance to maximize long-term efficiency.</p>
+            </div>
+          
+            <a href="" class="btn btn-primary btn-lg">Contact Us !</a>
+        </div>
+    </div>
+
+
+
+  
+    
+</div>
+
+
+
+
+
+{% endblock content %}

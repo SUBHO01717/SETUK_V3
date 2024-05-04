@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+
+<style>
+    .form-check.hoverable:hover {
+        background-color: #4942E4; 
+        color: white;
+    }
+    .form-check-input.hoverable:hover {
+        
+        color: white;
+    }
+</style>
+
+<div class="container p-5">
+ 
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Do you own your home?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="ownership" value="Yes" class="form-check-input"> Yes
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="ownership" value="No" class="form-check-input"> No
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Type of your residence</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="House" class="form-check-input"> House
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="Apartment" class="form-check-input"> Apartment
+                </label>
+            </div>
+
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Age of your building</label>
+            <input type="text" name="age_of_building" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Number of floors</label>
+            <input type="text" name="number_of_floors" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Square Footage</label>
+            <input type="text" name="square_footage" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">How many people reside there?</label>
+            <input type="text" name="number_of_people" class="form-control" id="name" >
+        </div>
+        
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Peoples ages who is living in the residence</label>
+            <input type="text" name="average_age" class="form-control" id="name" >
+        </div>
+        
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">When people are usually home/away</label>
+            <input type="text" name="usual_stay" class="form-control" id="name" >
+        </div>
+        
+        <!-- Repeat the above pattern for other radio button groups -->
+    
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Enter your Name</label>
+            <input type="text" name="name" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="full_address" class="mb-2 fs-5 fw-bold mb-3">Full Address</label>
+            <input type="text" name="full_address" class="form-control" id="full_address">
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="post_code" class="mb-2 fs-5 fw-bold mb-3">Post Code</label>
+            <input type="text" name="post_code" class="form-control" id="post_code" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="phone" class="mb-2 fs-5 fw-bold mb-3">Phone</label>
+            <input type="text" name="phone" class="form-control" id="phone" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="email" class="mb-2 fs-5 fw-bold mb-3">Email</label>
+            <input type="email" name="email" class="form-control" id="email" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    
+    
+</div>
+
+
+
+{% endblock content %}

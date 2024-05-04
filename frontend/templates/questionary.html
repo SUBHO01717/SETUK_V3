@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container-fluid p-0" style="background-color: #070F2B;">
+        <div class="container">
+            <div class="row py-5" >
+                <div class="col-6 py-5">
+                    <div class="text-light ">
+                        <h1 class="fw-bold pb-3 ">
+                            We Can Help you to reduce your electricity bills by Finding you the best Green Technology
+                        </h1>
+                        <h4 class=" pb-3 ">We are proud to have help more than 1000+ people with green energy</h4>
+                        <div class="form-group row align-items-center border border-white rounded p-3">
+                            <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label fs-4 fw-bold ">I'm Looking for </label>
+                            <div class="col-sm-8">
+
+
+                                <div class="form-group col-md-6">
+                                   
+                                    <select id="exampleFormControlSelect1" class="form-control" onchange="redirectToCategory()">
+                                      <option selected>Choose form the below list</option>
+                                      <option value="{% url 'boiler_form'%}" class="fs-5">Boiler</option>
+                                      <option value="{% url 'ev_charger_form'%}"  class="fs-5">EV Charger</option>
+                                      <option value="{% url 'heat_pump_form'%}" class="fs-5">Heat Pump</option>
+                                      <option value="{% url 'home_security_form'%}" class="fs-5">Home Security</option>
+                                      <option value="{% url 'infrared_heating_form' %}" class="fs-5">Infrared Heating </option>
+                                      <option value="{% url 'solar_form' %}" class="fs-5">Solar System</option>
+                                      <option value="{% url 'window_form' %}" class="fs-5">Window</option>
+                                   
+                                    </select>
+                                  </div>
+
+
+
+                                {% comment %} <select class="form-control" id="exampleFormControlSelect1" onchange="redirectToCategory()">
+                                    <option selected>Choose...</option>
+                                    {% for q in q_category %}
+                                    <option value="{% url 'form_type_q' pk=q.id %}" class="fs-5 ">{{ q.name }}</option>
+                                    {% endfor %}
+                                </select> {% endcomment %}
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row py-5 d-flex">
+            <div class="col-3"><h3 class="fw-bold">Start Exploring | </h3></div>
+            <div class="col-9"><p class="fs-5">Start Exploring | Explore most recomended articales that relates our products</p></div>
+        </div>
+
+
+        
+        <div class="row pb-3">
+            {% for blog in all_blog %}
+            <div class="col-sm-2 py-5">
+                <div class="card h-100 shadow-sm">
+                    {% if blog.image %}
+                    <a href="{% url 'blog-details' pk=blog.id %}"><img src="{{blog.image.url}}" class="card-img-top" alt="..."></a>
+                    
+                    {% else %}
+                    <img src="{% static 'images/logo.png' %}" class="card-img-top  img-thumbnail" alt="...">
+
+
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-title fw-bold">{{blog.title}} </p> 
+                        <a href="{% url 'blog-details' pk=blog.id %}">Read more...</a>
+                      
+                    </div>
+                </div>
+            </div>
+                 
+       {% endfor %}
+       
+        </div>
+    </div>
+
+    <script>
+        function redirectToCategory() {
+            var selectElement = document.getElementById("exampleFormControlSelect1");
+            var selectedValue = selectElement.value;
+            window.location.href = selectedValue;
+        }
+    </script>
+
+  {% endblock content %}

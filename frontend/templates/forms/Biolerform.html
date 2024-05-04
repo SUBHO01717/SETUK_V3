@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+
+<style>
+    .form-check.hoverable:hover {
+        background-color: #4942E4; 
+        color: white;
+    }
+    .form-check-input.hoverable:hover {
+        
+        color: white;
+    }
+</style>
+
+<div class="container p-5">
+ 
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">What type of property is the new boiler for?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="property_type" value="House" class="form-check-input"> House
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="property_type" value="Apartment" class="form-check-input"> Apartment
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="property_type" value="Office" class="form-check-input"> Office
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="property_type" value="Others" class="form-check-input"> Others
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Please select the job type you require.</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="job_type" value="New Instalation" class="form-check-input"> New Instalation
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="job_type" value="Replacement" class="form-check-input"> Replacement
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="job_type" value="Service" class="form-check-input"> Service
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="job_type" value="Others" class="form-check-input"> Others
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">What type of boiler do you have?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="boiler_type" value="Central Heating & Hot Water" class="form-check-input"> Central Heating & Hot Water
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="boiler_type" value="Central Heating Only" class="form-check-input"> Central Heating Only
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="boiler_type" value="Hot Water Only" class="form-check-input"> Hot Water Only
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="boiler_type" value="Do not Know" class="form-check-input"> Do not Know
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">What is your current method of gathering hot water?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="power_usage" value="Gas" class="form-check-input"> Gas
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="power_usage" value="Oil" class="form-check-input"> Oil
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="power_usage" value="LPG" class="form-check-input"> LPG
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="power_usage" value="Others" class="form-check-input"> Others
+                </label>
+            </div>
+        </div>
+        
+        <!-- Repeat the above pattern for other radio button groups -->
+    
+        <div class="form-group bg-light p-3 rounded-3">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Enter your Name</label>
+            <input type="text" name="name" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3">
+            <label for="full_address" class="mb-2 fs-5 fw-bold mb-3">Full Address</label>
+            <input type="text" name="full_address" class="form-control" id="full_address">
+        </div>
+        <div class="form-group bg-light p-3 rounded-3">
+            <label for="post_code" class="mb-2 fs-5 fw-bold mb-3">Post Code</label>
+            <input type="text" name="post_code" class="form-control" id="post_code" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3">
+            <label for="phone" class="mb-2 fs-5 fw-bold mb-3">Phone</label>
+            <input type="text" name="phone" class="form-control" id="phone" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3">
+            <label for="email" class="mb-2 fs-5 fw-bold mb-3">Email</label>
+            <input type="email" name="email" class="form-control" id="email" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    
+    
+</div>
+
+
+
+{% endblock content %}

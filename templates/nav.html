@@ -1,0 +1,82 @@
+
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark ms-auto" data-bs-theme="dark">
+	<div class="container-fluid p-3 ">
+	  <a class="navbar-brand fs-5 fw-bold me-5" href="/">STEUK.CO.UK</a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav ms-auto">
+		  <li class="nav-item fs-5 fw-bold me-5">
+			<a class="nav-link active " aria-current="page" href="/">Home</a>
+		  </li>
+		  <li class="nav-item fs-5 fw-bold me-5">
+			<a class="nav-link" href="{% url 'about' %}">About</a>
+		  </li>
+
+		  <li class="nav-item fs-5 fw-bold me-5 dropdown">
+				<a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Products
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="{% url 'shop' %}">All Products</a></li>
+					<hr>
+					{% for category in categories %}
+					<li><a class="dropdown-item" href="{% url 'product_list' category.id %}">{{ category.name }}</a></li>
+					{% endfor %}
+				</ul>
+	 	   </li>
+
+			<li class="nav-item fs-5 fw-bold me-5 dropdown">
+				<a class="nav-link dropdown-toggle" data-bs-auto-close="outside" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Services
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{% url 'services' %}" class="dropdown-item">All Services</a></li>
+					<hr>
+					{% for category_outer in service_categories %}
+						<li class="dropend">
+							<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">{{ category_outer.service_category_name }}</a>
+							<ul class="dropdown-menu">
+								{% if category_outer.services.exists %}
+									<!-- Output the number of services for debugging -->
+									
+									{% for service in category_outer.services.all %}
+										<li><a href="{% url 'single_service_details' service.id %}" class="dropdown-item">{{ service.service_name }}</a></li>
+									{% endfor %}
+								{% else %}
+									<li><a href="" class="dropdown-item">No Items to Show</a></li>
+								{% endif %}
+							</ul>
+						</li>
+					{% endfor %}
+				</ul>
+	 	    </li>
+
+		  <li class="nav-item fs-5 fw-bold me-5">
+			<a class="nav-link" href="{% url 'packages' %}">Packages</a>
+		</li>
+		<li class="nav-item fs-5 fw-bold me-5">
+			<a class="nav-link" href="{% url 'blog' %}">Blog</a>
+		</li>
+		<li class="nav-item fs-5 fw-bold me-5">
+			<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+		</li>
+		
+		
+
+
+
+
+		</ul>
+
+
+
+	  </div>
+	</div>
+  </nav>
+
+
+

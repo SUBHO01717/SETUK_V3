@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white text-uppercase">{{ category.service_category_name}}</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / Services</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="text-center p-5 text-uppercase">OUR PROFESSIONAL "<i><u>{{category.service_category_name}}</u></i>" SERVICES INCLUDES</h4>
+            </div>
+            <div class="col-sm-12">
+                <div class="row pb-5 justify-content-center text-center">
+                    {% for service in services %}
+                        <div class="col-md-3 mb-2">
+                            <div class="card">
+                                {% if service.image %}
+                                    <img src="{{ service.image.url }}" class="card-img-top" alt="...">
+                                {% else %}
+                                    <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="...">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ service.service_name }}</h5>
+                                    <a href="{% url 'single_service_details' service.id %}" >....READ DETAILS</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            
+            </div>
+        </div>
+      </div>
+    
+</div>
+
+
+
+
+
+{% endblock content %}

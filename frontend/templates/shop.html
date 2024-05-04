@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    <div class="p-3 p-md-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Our Products</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / Our Products</p>
+    </div>
+   
+    <div class="row">
+        <div class="col-12 col-md-2 p-3 p-md-5" style="background-color: #F4F4F6;">
+            <h4>Filter by Category</h4>
+            <hr>
+            <div>
+
+                {% for category in categories %}
+					<button class="btn btn-primary mb-2"><a href="{% url 'product_list' category.id %}" class="text-decoration-none text-light">{{ category.name }}</a></button>
+				{% endfor %}
+
+            
+             
+            </div>
+        </div>
+        <div class="col-12 col-md-10 p-3">
+            <div class="">
+                <div class="row mx-auto">
+                    {% for product in products %}
+                        <div class="col-sm-3 mb-3 d-flex align-items-center justify-content-center">
+                            <div class="card h-100 shadow">
+                                <a href="{% url 'product-details' product.pk %}">
+                                    {% if product.images.exists %}
+                                        <!-- Display only the first image associated with the product -->
+                                        <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="Product Image">
+                                    {% else %}
+                                        <!-- Provide a placeholder image or alternative content if no images are available -->
+                                        <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="No Image Available">
+                                    {% endif %}
+                                </a>
+                                <div class="card-body" style="background-color: #0E46A3">
+                                    <h6 class="card-title text-uppercase text-center">
+                                        <a href="{% url 'product-details' product.pk %}" class="text-decoration-none text-white">{{ product.name }}</a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

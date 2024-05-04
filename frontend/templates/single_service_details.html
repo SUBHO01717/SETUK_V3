@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white text-uppercase">{{service.service_name}}</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / Services</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 mx-auto pb-3">
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top" alt="...">
+                {% else %}
+                    <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="text-center"> <!-- Centering the buttons -->
+                    <a href="{% url 'design' %}" class="btn btn-success">Designing</a>
+                    <a href="{% url 'installation' %}" class="btn btn-success">Installation</a>
+                    <a href="{% url 'maintenance' %}" class="btn btn-success">Maintenance</a>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class=" mt-5">
+                    <p>{{service.details | safe}}</p>
+                </div>
+            </div>
+            
+            
+            </div>
+        </div>
+      </div>
+    
+</div>
+
+
+
+
+
+{% endblock content %}

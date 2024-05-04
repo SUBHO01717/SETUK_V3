@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white text-text-uppercase">{{blog.title}}</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / <a href="{%url 'blog' %}" class="text-decoration-none text-white fw-bold">Blogs</a> </p>
+    </div>
+
+
+    <div class="container">
+      
+        
+        
+           <div class="row">
+           
+                <div class="col-sm-12 py-5">
+                    <div class="card h-100 border-0">
+                        {% if blog.image %}
+                        <img src="{{blog.image.url}}" class="card-img-top mb-5" alt="...">
+                        {% else %}
+                        <img src="{% static 'images/logo.png' %}" class="card-img-top  img-thumbnail" alt="...">
+                        {% endif %}
+                        <div class="card-body pt-4">
+                            <h5 class="card-title">{{blog.title}}</h5>
+                            <span><i>Source : {{blog.source}}</i></span> | <span class="fw-bold">Date: {{blog.date}}</span>
+                            <p class="card-text">{{ blog.details |safe }} </p>
+                        </div>
+                    </div>
+                </div>
+                     
+        
+    </div>
+
+
+
+
+    
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+
+<style>
+    .form-check.hoverable:hover {
+        background-color: #4942E4; 
+        color: white;
+    }
+    .form-check-input.hoverable:hover {
+        
+        color: white;
+    }
+</style>
+
+<div class="container p-5">
+ 
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">What Type of Solar System you want to Install?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_type" value="Domestic" class="form-check-input"> Domestic
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_type" value="Commercial" class="form-check-input"> Commercial
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Which of the below best describes the property you live in?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="Detached" class="form-check-input"> Detached
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="Terrace" class="form-check-input"> Terrace
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="Bungalow" class="form-check-input"> Bungalow
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="residency" value="Semidetached" class="form-check-input"> Semidetached
+                </label>
+            </div>
+
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Are you the property owner?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="ownership" value="Yes" class="form-check-input"> Yes
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="ownership" value="No" class="form-check-input"> No
+                </label>
+            </div>
+           
+        </div>
+  
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Which solar products you are interested in?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_type" value="Solar Panels" class="form-check-input"> Solar Panels
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_type" value="Solar Battery" class="form-check-input"> Solar Battery
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_type" value="Solar Pannels & Battery" class="form-check-input"> Solar Pannels & Battery
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_type" value="Not Sure" class="form-check-input"> Not Sure
+                </label>
+            </div>
+           
+        </div>
+        
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Do you already have the Solar Panel System installed?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_exists" value="Yes" class="form-check-input"> Yes
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="solar_exists" value="No" class="form-check-input"> No
+                </label>
+            </div>
+           
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Do you live in a conservation area or listed building?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="building_type" value="Yes" class="form-check-input"> Yes
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="building_type" value="No" class="form-check-input"> No
+                </label>
+            </div>
+           
+        </div>
+        
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">How many Bedrooms do you have?</label>
+            <input type="text" name="bed_rooms" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Total kWh Using Per Year</label>
+            <input type="text" name="kws_usages" class="form-control" id="name" >
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Average monthly Energy Usage</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="monthly_usages" value="Low" class="form-check-input"> Low
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="monthly_usages" value="Medium" class="form-check-input"> Medium
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="monthly_usages" value="High" class="form-check-input"> High
+                </label>
+            </div>
+           
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">What is your average monthly electricity bill?</label>
+            <input type="text" name="avg_electricity_bill" class="form-control" id="name" >
+        </div>
+        
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Is which direction does your roof face?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="North" class="form-check-input"> North
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="Northwest" class="form-check-input"> Northwest
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="East" class="form-check-input"> East
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="South" class="form-check-input"> South
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="Southeast" class="form-check-input"> Southeast
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="Southwest" class="form-check-input"> Southwest
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="West" class="form-check-input"> West
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_direction" value="Not Sure" class="form-check-input"> Not Sure
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Are there any windows on your roof?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_window" value="Yes" class="form-check-input"> Yes
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_window" value="No" class="form-check-input"> No
+                </label>
+            </div>
+           
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">Is there any shading that impacts your roof?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_shadow_impact" value="None" class="form-check-input"> None
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_shadow_impact" value="Yes,Nearby Building" class="form-check-input"> Yes,Nearby Building
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_shadow_impact" value="Yes,Nearby Tree" class="form-check-input"> Yes,Nearby Tree
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="roof_shadow_impact" value="Yes,Others" class="form-check-input"> Yes,Others
+                </label>
+            </div>
+           
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">What is the pitch of our roof?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="pitch_type" value="Flat" class="form-check-input"> Flat
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="pitch_type" value="Pitched / Angled" class="form-check-input"> Pitched / Angled
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="pitch_type" value="Others" class="form-check-input"> Others
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="pitch_type" value="Not Sure" class="form-check-input"> Not Sure
+                </label>
+            </div>
+           
+        </div>
+
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label class= "fs-5 fw-bold mb-3">How Quickly do you need the work doing?</label>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_duration" value="Flat" class="form-check-input"> ASAP
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_duration" value="Within 1 month" class="form-check-input"> Within 1 month
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_duration" value="Within 3 months" class="form-check-input"> Within 3 months
+                </label>
+            </div>
+            <div class="form-check shadow-sm mb-2 hoverable rounded-3">
+                <label class="form-check-label mx-2 p-2">
+                    <input type="radio" name="installation_duration" value="Within 6 months" class="form-check-input"> Within 6 months
+                </label>
+            </div>
+           
+        </div>
+        <!-- Repeat the above pattern for other radio button groups -->
+    
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="name" class="mb-2 fs-5 fw-bold mb-3">Enter your Name</label>
+            <input type="text" name="name" class="form-control" id="name" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="full_address" class="mb-2 fs-5 fw-bold mb-3">Full Address</label>
+            <input type="text" name="full_address" class="form-control" id="full_address">
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="post_code" class="mb-2 fs-5 fw-bold mb-3">Post Code</label>
+            <input type="text" name="post_code" class="form-control" id="post_code" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="phone" class="mb-2 fs-5 fw-bold mb-3">Phone</label>
+            <input type="text" name="phone" class="form-control" id="phone" >
+        </div>
+        <div class="form-group bg-light p-3 rounded-3 mb-2">
+            <label for="email" class="mb-2 fs-5 fw-bold mb-3">Email</label>
+            <input type="email" name="email" class="form-control" id="email" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    
+    
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,134 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+
+.carousel-inner {
+    position: relative;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here (0.5 for 50% opacity) */
+  }
+  
+  .bigger-heading {
+    font-size: 80px; /* Adjust the font size as needed */
+  } 
+
+  .carousel-caption {
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  /* Custom CSS for left aligning text within the caption */
+  .carousel-caption .text-left {
+    text-align: left;
+  }
+
+  .carousel-caption .btn {
+    max-width: 250px; /* Adjust the maximum width as needed */
+    margin-right: auto; /* Center the button horizontally */
+  }
+
+  .category {
+    background-color: transparent;
+    color: black;
+    padding: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .category:hover {
+    background-color: #F0F3FF;
+    transform: scale(1.1);
+  }
+
+
+
+  .bg-image {
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/Slider-1.jpg'); /* Overlay and image */
+    background-size: cover;
+    background-position: center;
+    height: 400px; /* Adjust height as needed */
+}
+
+.center-text {
+    text-align: center;
+    color: #fff; /* Text color */
+    padding-top: 150px; /* Adjust top padding for vertical centering */
+}
+
+.navbar-custom {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
+
+
+
+.dropdown-menu li {
+  position: relative;
+  }
+  .dropdown-menu .dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -7px;
+  }
+  .dropdown-menu .dropdown-submenu-left {
+  right: 100%;
+  left: auto;
+  }
+  .dropdown-menu > li:hover > .dropdown-submenu {
+  display: block;
+  }
+
+  /* Set minimum height for carousel on small screens */
+  @media (max-width: 576px) {
+
+    .carousel-item img {
+      height: 300px;
+      max-height: 100%;
+      width: auto;
+      object-fit: cover;
+    }
+
+    .bigger-heading {
+      font-size: 24px; /* Adjust the font size as needed */
+    } 
+    
+    .carousel-caption .fs-1,
+    .carousel-caption .fs-2 {
+      font-size: 16px!important;
+    }
+    
+    .center-text .fs-4{
+      font-size: 16px!important;
+    }
+
+    .bg-image{
+      height: 550px; 
+    }
+
+    .fs-5 {
+      font-size: 16px!important;
+  }
+
+  }

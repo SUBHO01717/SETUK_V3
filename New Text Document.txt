@@ -1,0 +1,42 @@
+https://cbgrich.com/?gad_source=1&gclid=CjwKCAjwrIixBhBbEiwACEqDJWUmg1arR6aHtrFJCCzaCzhUU4FmfC3_VA_6PSQanUL0nmfNIGedVBoC37AQAvD_BwE
+theecosystem.co.uk
+https://www.solartradesales.co.uk/
+
+
+https://medium.com/@yashnarsamiyev2/how-to-add-ckeditor-in-django-aa6de5a09862
+
+https://www.ynsolarsystem.com/?gad_source=1&gclid=CjwKCAjw57exBhAsEiwAaIxaZroXaSzDd-F2pMWvQ2jDrmvLL9sMo01Tgw3KEy5Q9p01p0treWvc7xoCipIQAvD_BwE
+
+https://www.sepisolar.com/solar-design-services/
+
+
+Service 
+    - Solar Energy
+        - Residential Solar
+        - New Build Solar 
+        - Commercial Solar 
+        - Energy Storage
+        - Panel Maintenance
+        - Solar PV Health Check 
+        - Solar Products
+        - Solar Packages
+    - Ev Charges
+        - Commercial Charger
+        - Work Place Charging
+        - EV Products
+    - Residential Solar
+        - 
+
+
+Packages (Need Backend Service - Shuold Have scope to add multiple Packages)
+
+    Home solar
+    --- Home Solar Packages
+    --- Home Solar Service Packer 
+
+    Commercial Solar 
+
+    --- Commercial Solar Packeges
+    --- Commercial Solar Service Packages  
+
+Projects Showcase

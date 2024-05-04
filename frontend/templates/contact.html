@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<div class="container-fluid px-0"> 
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Contact Us</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / Contact Us</p>
+    </div>
+
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center">
+            <div>
+                <h1 class="p-5">Office Address</h1>
+                <div class="px-5 d-flex align-items-center">
+                    <i class="fas fa-address-card me-3" aria-hidden="true" style="font-size:34px; color: #363062;"></i>
+                    <span class="fs-5">TSD Traders, Unit -605, 252-262 Romford Road, <br>Forest Gate, London, E7 9HZ, United Kingdom</span>
+                </div>
+                <div class="px-5 py-3 d-flex align-items-center">
+                    <i class="fas fa-phone me-3" aria-hidden="true" style="font-size:34px; color: #363062;"></i>
+                    <span class="fs-5">Landline : (+44) 203 5403555</span>
+                </div>
+                <div class="px-5 py-3 d-flex align-items-center">
+                    <i class="fas fa-envelope-open me-3" aria-hidden="true" style="font-size:34px; color: #363062;"></i>
+                    <span class="fs-5"><a href="mailto:Info@tsdtraders.com" class="text-decoration-none text-black">Info@tsdtraders.com</a></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 p-5" >
+            <div class="card p-3 bg-light border-0">
+                <h1 class="text-center">Write Us</h1>
+                <form action="." method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {% bootstrap_form form %}
+                    </div>
+                    <div class="text-center">
+                        {% bootstrap_button button_type="submit" content="Submit" %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <div style="width: 100%"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=House%20252,%20Unit%20605,Kalam,%20262%20Romford%20Rd,%20London%20E7%209HZ,%20United%20Kingdom+(Solar%20Tech%20Experts)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps devices</a></iframe></div>
+</div>
+
+
+{% endblock content %}
