@@ -19,7 +19,6 @@ def Shop(request):
     }
     return render(request, 'shop.html', context)
 
-
 def ProductList(request, category_id=None):
     products = Product.objects.filter(show_product='YES')
     if category_id:
@@ -54,8 +53,6 @@ def ProductDetails(request, pk):
 def About(request):
     return render(request, 'about.html')
 
-
-
 def AllServices(request):
     servicescategory=ServiceCategory.objects.all()
 
@@ -63,7 +60,6 @@ def AllServices(request):
         'servicescategory':servicescategory
     }
     return render(request, 'services.html', context)
-
 
 def SingleServices(request, pk):
     # Retrieve the ServiceCategory object with the given primary key
@@ -89,9 +85,21 @@ def SingleServiceDetails(request,pk):
 
     return render(request, 'single_service_details.html', context)
 
-
 def Package(request):
-    return render(request, 'packages.html')
+    packages=Packages.objects.all()
+
+    context={
+        'packages': packages
+    }
+    return render(request, 'packages.html',context)
+
+def PackageDeatils(request, pk):
+    package=Packages.objects.get(pk=pk)
+
+    context={
+        'package': package
+    }
+    return render(request, 'package_deatils.html',context)
 
 def Design(request):
     return render(request, 'design.html')
@@ -116,7 +124,6 @@ def BlogDetailsView(request,pk):
     }
     return render(request, 'blog_details.html', context)
 
-
 def ContactUs(request):
 
     if request.POST:
@@ -139,7 +146,6 @@ def Thanks(request):
 
     return render(request, 'thanks.html')
 
-
 def AdminView(request):
 
     category=Category.objects.all().count()
@@ -158,8 +164,6 @@ def AdminView(request):
 
     return render(request, 'backend/backend.html',context)
 
-
-
 def formItems(request):
 
    
@@ -171,7 +175,6 @@ def formItems(request):
     }
 
     return render(request, 'questionary.html' , context)
-
 
 def BoilerFormView(request):
 
@@ -233,8 +236,6 @@ def EVChargerFormView(request):
     else:
         return render(request, 'forms/EV_Charger_Form.html')
 
-
-
 def HeatPumpFormView(request):
 
         if request.method == 'POST':
@@ -279,7 +280,6 @@ def HeatPumpFormView(request):
         else:
             return render(request, 'forms/Heat_Pump_Form.html')
 
-
 def HomeSecurityView(request):
 
         if request.method == 'POST':
@@ -321,8 +321,6 @@ def HomeSecurityView(request):
         else:
             return render(request, 'forms/Home_Security_form.html')
 
-
-
 def InfraredHEatingView(request):
 
         if request.method == 'POST':
@@ -351,7 +349,6 @@ def InfraredHEatingView(request):
             return redirect('/')
         else:
             return render(request, 'forms/Infrared_heating_form.html')
-
 
 def SolarSystemView(request):
 
@@ -406,8 +403,6 @@ def SolarSystemView(request):
         else:
             return render(request, 'forms/solar_form.html')
 
-
-
 def WindowInsView(request):
 
         if request.method == 'POST':
@@ -439,8 +434,6 @@ def WindowInsView(request):
             return redirect('/')
         else:
             return render(request, 'forms/window_ins_form.html')
-
-
 
 
 

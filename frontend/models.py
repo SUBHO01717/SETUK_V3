@@ -104,7 +104,8 @@ class Packages(models.Model):
     image=models.ImageField(upload_to='media/packages',blank=True,null=True)
     category=models.ForeignKey(PackageCatgory,related_name='packages', on_delete=models.CASCADE, default=None)
     package_name=models.CharField(max_length=255, blank=True, null=True)
-    details=RichTextUploadingField(null=True, blank=True)
+    package_summary=RichTextUploadingField(null=True, blank=True)
+    package_details=RichTextUploadingField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.package_name}"

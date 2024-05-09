@@ -10,7 +10,31 @@
     </div>
 
     <div>
-            <h2 class="text-capitalize text-center p-5">Coming Soon---------</h2>
+        <h2 class="text-capitalize text-center p-5">OUR PACKAGES</h2>
+        <div class=" px-3">
+            
+            <div class="row ">
+                {% for pack in packages %}
+                <div class="col-sm-12 col-md-3 h-100">
+                  <div class="card  mb-5 shadow">
+                    <div class="card-header bg-primary text-light">
+                        <h5 class="fw-bold text-center">{{pack.package_name}}</h5>
+                      </div>
+                    <div class="card-body">
+                      
+                      <p class="card-text">{{pack.package_summary |safe}}</p>
+                     
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'package_deatils' pack.id %}" class="btn btn-outline-primary">DETAILS</a>
+                        <a href="#" class="btn btn-outline-success">GET QUOTATION</a>
+                      </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+           
+        </div>
     </div>
 
   

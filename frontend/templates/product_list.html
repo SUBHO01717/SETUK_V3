@@ -18,34 +18,34 @@
             </div>
         </div>
         <div class="col-12 col-md-10 p-3">
-            <div class="">
+            <div>
                 <div class="row mx-auto">
                     {% for product in products %}
-                        <div class="col-sm-3 mb-3 d-flex align-items-center justify-content-center">
-                            <div class="card h-100 shadow">
-                                <a href="{% url 'product-details' product.pk %}">
-                                    {% if product.images.exists %}
-                                        <!-- Display only the first image associated with the product -->
-                                        <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="Product Image">
-                                    {% else %}
-                                        <!-- Provide a placeholder image or alternative content if no images are available -->
-                                        <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="No Image Available">
-                                    {% endif %}
-                                </a>
-                                <div class="card-body" style="background-color: #0E46A3">
-                                    <h6 class="card-title text-uppercase text-center">
-                                        <a href="{% url 'product-details' product.pk %}" class="text-decoration-none text-white">{{ product.name }}</a>
-                                    </h6>
-                                </div>
+                    <div class="col-sm-3 mb-3 d-flex align-items-center justify-content-center text-center">
+                        <div class="card h-100 shadow">
+                            <a href="{% url 'product-details' product.pk %}">
+                                {% if product.images.exists %}
+                                <!-- Display only the first image associated with the product -->
+                                <img src="{{ product.images.first.image.url }}" class="card-img-top" alt="Product Image">
+                                {% else %}
+                                <!-- Provide a placeholder image or alternative content if no images are available -->
+                                <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="No Image Available">
+                                {% endif %}
+                            </a>
+                            <div class="card-body" style="background-color: #0E46A3">
+                                <h6 class="card-title text-uppercase">
+                                    <a href="{% url 'product-details' product.pk %}" class="text-decoration-none text-white">{{ product.name }}</a>
+                                </h6>
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
-                
                 </div>
-                
             </div>
         </div>
     </div>
+    
+
 </div>
 
 

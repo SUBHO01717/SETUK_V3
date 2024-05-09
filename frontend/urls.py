@@ -9,6 +9,7 @@ urlpatterns = [
     path('product-details/<int:pk>', ProductDetails, name="product-details"),
     path('about-us/', About, name="about"),
     path('packages/', Package, name="packages"),
+    path('package_deatils/<int:pk>', PackageDeatils, name="package_deatils"),
     path('services/', AllServices, name="services"),
     path('single_services/<int:pk>', SingleServices, name="single_services"),
     path('single_service_details/<int:pk>', SingleServiceDetails, name="single_service_details"),
