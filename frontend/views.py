@@ -462,7 +462,7 @@ def WindowInsView(request):
             )
           
             window_ins_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(window_ins_data.email, window_ins_data.name))
             email_thread.start()
            
             return redirect('/')
