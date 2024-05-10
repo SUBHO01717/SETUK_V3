@@ -460,9 +460,11 @@ def WindowInsView(request):
                 phone=cleaned_data['phone'],
                 email=cleaned_data['email']
             )
+          
             window_ins_data.save()
             email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
+           
             return redirect('/')
     else:
         form = WindowInsForm()
@@ -476,6 +478,8 @@ def booking_email(email, name):
 
     html_message = render_to_string('email/email_template.html', {'email': email, 'name': name})
     plain_message = strip_tags(html_message)
-    email = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
-    email.attach_alternative(html_message, "text/html")
-    email.send()
+    
+    # Use a different variable name to avoid conflict
+    email_message = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
+    email_message.attach_alternative(html_message, "text/html")
+    email_message.send()
