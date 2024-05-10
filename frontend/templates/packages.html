@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 <div class="container-fluid px-0"> 
     
     <div class="p-5" style="background-color: #61677A;">
@@ -9,32 +11,51 @@
         <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> / Packages</p>
     </div>
 
-    <div>
-        <h2 class="text-capitalize text-center p-5">OUR PACKAGES</h2>
-        <div class=" px-3">
-            
-            <div class="row ">
-                {% for pack in packages %}
-                <div class="col-sm-12 col-md-3 h-100">
-                  <div class="card  mb-5 shadow">
+    <div class="container ">
+        <h2 class="text-capitalize text-center py-5">OUR PACKAGES</h2>
+          <div class="owl-carousel owl-theme">
+            {% for pack in packages %}
+              <div class="item">
+                  <div class="card mb-5 shadow h-100">
                     <div class="card-header bg-primary text-light">
-                        <h5 class="fw-bold text-center">{{pack.package_name}}</h5>
-                      </div>
+                      <h5 class="fw-bold text-center">{{pack.package_name}}</h5>
+                    </div>
                     <div class="card-body">
-                      
                       <p class="card-text">{{pack.package_summary |safe}}</p>
-                     
                     </div>
                     <div class="card-footer text-center">
-                        <a href="{% url 'package_deatils' pack.id %}" class="btn btn-outline-primary">DETAILS</a>
-                        <a href="#" class="btn btn-outline-success">GET QUOTATION</a>
-                      </div>
+                      <a href="{% url 'package_deatils' pack.id %}" class="btn btn-outline-primary btn-sm mb-3">DETAILS</a>
+                      <a href="#" class="btn btn-outline-success btn-sm mb-3">GET QUOTATION</a>
+                    </div>
                   </div>
-                </div>
-                {% endfor %}
               </div>
-           
-        </div>
+            {% endfor %}
+          </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+   
+    nav:false,
+    margin:20,
+    autoplay:true,
+    autoplayTimeout:1500, 
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>
 {% endblock content %}
