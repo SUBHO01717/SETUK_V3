@@ -3,6 +3,11 @@ from .models import *
 from django.core.exceptions import ObjectDoesNotExist
 from . form import *
 from django.http import HttpResponseBadRequest
+
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
+import threading
 # Create your views here.
 
 def Home(request):
@@ -431,68 +436,21 @@ def WindowInsView(request):
                 email=email
             )
             window_ins_data.save()
+
+            email_thread = threading.Thread(target=booking_email, args=(window_ins_data.cleaned_data['email'], window_ins_data.cleaned_data['name']))
+            email_thread.start()
+
             return redirect('/')
         else:
             return render(request, 'forms/window_ins_form.html')
 
 
+def booking_email(email, name ):
+    subject = "Acknowledgement of Your Request for Quotation"
+    from_email = "info@steuk.co.uk"
 
-# def QFormType(request, pk):
-#     form_type = get_object_or_404(Q_FormType, pk=pk)
-
-#     if request.method == "POST":
-#         if form_type.name == 'Boiler':
-#             form = BoilerForm(request.POST)
-#         elif form_type.name == 'Heat Pump':
-#             form = HeatPumpForm(request.POST)
-#         elif form_type.name == 'EV Charger':
-#             form = EVForm(request.POST)
-#         elif form_type.name == 'Home Security':
-#             form = HomeSecurityForm(request.POST)
-
-#         elif form_type.name == 'Infrared Heating':
-#             form = InfraredHeatForm(request.POST)
-
-#         elif form_type.name == 'Solar System':
-#             form = SolarForm(request.POST)
-        
-#         elif form_type.name == 'Window':
-#             form = WindowForm(request.POST)
-
-#         else:
-#             return HttpResponseBadRequest("Invalid form type")
-
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#     else:
-#         initial_values = {}
-#         if form_type.name == 'Boiler':
-#             initial_values = {'formType': 'Boiler'}  # Set default values for BoilerForm fields
-#             form = BoilerForm(initial=initial_values)
-#         elif form_type.name == 'Heat Pump':
-#             initial_values = {'formType': 'Heat Pump'}  # Set default values for HeatPumpForm fields
-#             form = HeatPumpForm(initial=initial_values)
-#         elif form_type.name == 'EV Charger':
-#             initial_values = {'formType': 'EV Charger'}  # Set default values for EVForm fields
-#             form = EVForm(initial=initial_values)
-        
-#         elif form_type.name == 'Home Security':
-#             initial_values = {'formType': 'Home Security'}  # Set default values for EVForm fields
-#             form = HomeSecurityForm(initial=initial_values)
-
-#         elif form_type.name == 'Infrared Heating':
-#             initial_values = {'formType': 'Infrared Heating'}  # Set default values for EVForm fields
-#             form = InfraredHeatForm(initial=initial_values)
-#         elif form_type.name == 'Solar System':
-#             initial_values = {'formType': 'Solar System'}  # Set default values for EVForm fields
-#             form = SolarForm(initial=initial_values)
-
-#         elif form_type.name == 'Window':
-#             initial_values = {'formType': 'Window'}  # Set default values for EVForm fields
-#             form = WindowForm(initial=initial_values)
-
-#         else:
-#             return HttpResponseBadRequest("Invalid form type")
-
-#         return render(request, 'form.html', {'form': form, 'form_type': form_type})
+    html_message = render_to_string('email/email_template.html', {'email': email,  'name':name,})
+    plain_message = strip_tags(html_message)
+    email = EmailMultiAlternatives(subject, plain_message, from_email, to=[email,'info@steuk.co.uk',])
+    email.attach_alternative(html_message, "text/html")
+    email.send()
