@@ -206,6 +206,8 @@ def BoilerFormView(request):
             email=email
         )
         boiler_data.save()
+        email_thread = threading.Thread(target=booking_email, args=(boiler_data.cleaned_data['email'], boiler_data.cleaned_data['name']))
+        email_thread.start()
         return redirect('/')
     else:
         return render(request, 'forms/Biolerform.html')
@@ -237,6 +239,8 @@ def EVChargerFormView(request):
             email=email
         )
         ev_data.save()
+        email_thread = threading.Thread(target=booking_email, args=(ev_data.cleaned_data['email'], ev_data.cleaned_data['name']))
+        email_thread.start()
         return redirect('/')
     else:
         return render(request, 'forms/EV_Charger_Form.html')
@@ -281,6 +285,8 @@ def HeatPumpFormView(request):
                 email=email
             )
             heat_pump_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(heat_pump_data.cleaned_data['email'], heat_pump_data.cleaned_data['name']))
+            email_thread.start()
             return redirect('/')
         else:
             return render(request, 'forms/Heat_Pump_Form.html')
@@ -322,6 +328,8 @@ def HomeSecurityView(request):
                 email=email
             )
             home_security_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(home_security_data.cleaned_data['email'], home_security_data.cleaned_data['name']))
+            email_thread.start()
             return redirect('/')
         else:
             return render(request, 'forms/Home_Security_form.html')
@@ -351,6 +359,8 @@ def InfraredHEatingView(request):
                 email=email
             )
             infrared_heating_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(infrared_heating_data.cleaned_data['email'], infrared_heating_data.cleaned_data['name']))
+            email_thread.start()
             return redirect('/')
         else:
             return render(request, 'forms/Infrared_heating_form.html')
@@ -404,6 +414,8 @@ def SolarSystemView(request):
                 email=email
             )
             solar_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(solar_data.cleaned_data['email'], solar_data.cleaned_data['name']))
+            email_thread.start()
             return redirect('/')
         else:
             return render(request, 'forms/solar_form.html')
