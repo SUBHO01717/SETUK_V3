@@ -156,7 +156,7 @@ CKEDITOR_CONFIGS = {
 ## EMAIL SENDING 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'send.one.com'
-EMAIL_HOST_USER = 'info@steuk.co.uk'
+EMAIL_HOST_USER = 'info@steuk.co.uk' 
 EMAIL_HOST_PASSWORD = 'kalamhouse604'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
