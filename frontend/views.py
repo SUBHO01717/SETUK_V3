@@ -181,280 +181,292 @@ def formItems(request):
 
     return render(request, 'questionary.html' , context)
 
+class BoilerForm(forms.Form):
+    property_type = forms.CharField()
+    job_type = forms.CharField()
+    boiler_type = forms.CharField()
+    power_usage = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
+
 def BoilerFormView(request):
-
     if request.method == 'POST':
-        property_type = request.POST.get('property_type')
-        job_type = request.POST.get('job_type')
-        boiler_type = request.POST.get('boiler_type')
-        power_usage = request.POST.get('power_usage')
-        name = request.POST.get('name')
-        full_address = request.POST.get('full_address')
-        post_code = request.POST.get('post_code')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-
-        boiler_data = Q_BoilerData(
-            property_type=property_type,
-            job_type=job_type,
-            boiler_type=boiler_type,
-            power_usage=power_usage,
-            name=name,
-            full_address=full_address,
-            post_code=post_code,
-            phone=phone,
-            email=email
-        )
-        boiler_data.save()
-        email_thread = threading.Thread(target=booking_email, args=(boiler_data['email'], boiler_data['name']))
-        email_thread.start()
-        return redirect('/')
+        form = BoilerForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            boiler_data = Q_BoilerData(
+                property_type=cleaned_data['property_type'],
+                job_type=cleaned_data['job_type'],
+                boiler_type=cleaned_data['boiler_type'],
+                power_usage=cleaned_data['power_usage'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
+            )
+            boiler_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
+            email_thread.start()
+            return redirect('/')
     else:
-        return render(request, 'forms/Biolerform.html')
+        form = BoilerForm()
+    return render(request, 'forms/Biolerform.html', {'form': form})
     
+class EVChargerForm(forms.Form):
+    installation_type = forms.CharField()
+    ownership_type = forms.CharField()
+    parking_type = forms.CharField()
+    car_type = forms.CharField()
+    charger_type = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
+
 def EVChargerFormView(request):
-
     if request.method == 'POST':
-        installation_type = request.POST.get('installation_type')
-        ownership_type = request.POST.get('ownership_type')
-        parking_type = request.POST.get('parking_type')
-        car_type = request.POST.get('car_type')
-        charger_type = request.POST.get('charger_type')
-        name = request.POST.get('name')
-        full_address = request.POST.get('full_address')
-        post_code = request.POST.get('post_code')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-
-        ev_data = Q_EVData(
-            installation_type=installation_type,
-            ownership_type=ownership_type,
-            parking_type=parking_type,
-            car_type=car_type,
-            charger_type=charger_type,
-            name=name,
-            full_address=full_address,
-            post_code=post_code,
-            phone=phone,
-            email=email
-        )
-        ev_data.save()
-        email_thread = threading.Thread(target=booking_email, args=(ev_data['email'], ev_data['name']))
-        email_thread.start()
-        return redirect('/')
+        form = EVChargerForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            ev_data = Q_EVData(
+                installation_type=cleaned_data['installation_type'],
+                ownership_type=cleaned_data['ownership_type'],
+                parking_type=cleaned_data['parking_type'],
+                car_type=cleaned_data['car_type'],
+                charger_type=cleaned_data['charger_type'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
+            )
+            ev_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
+            email_thread.start()
+            return redirect('/')
     else:
-        return render(request, 'forms/EV_Charger_Form.html')
+        form = EVChargerForm()
+    return render(request, 'forms/EV_Charger_Form.html', {'form': form})
+
+class HeatPumpForm(forms.Form):
+    heating_type = forms.CharField()
+    location_type = forms.CharField()
+    ownership_type = forms.CharField()
+    heat_pump_type = forms.CharField()
+    duration = forms.CharField()
+    property_type = forms.CharField()
+    insulation = forms.CharField()
+    radiators = forms.CharField()
+    available_space = forms.CharField()
+    power_type = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
 
 def HeatPumpFormView(request):
-
-        if request.method == 'POST':
-
-            heating_type = request.POST.get('heating_type')
-            loaction_type = request.POST.get('loaction_type')
-            owenership_type = request.POST.get('owenership_type')
-            heat_pump_type = request.POST.get('heat_pump_type')
-            duration = request.POST.get('duration')
-            property_type = request.POST.get('property_type')
-            insulation = request.POST.get('insulation')
-            radiators = request.POST.get('radiators')
-            avilable_space = request.POST.get('avilable_space')
-            power_type = request.POST.get('power_type')
-
-
-            name = request.POST.get('name')
-            full_address = request.POST.get('full_address')
-            post_code = request.POST.get('post_code')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-
+    if request.method == 'POST':
+        form = HeatPumpForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
             heat_pump_data = Q_HeatPumps(
-                heating_type=heating_type,
-                loaction_type=loaction_type,
-                owenership_type=owenership_type,
-                heat_pump_type=heat_pump_type,
-                duration=duration,
-                property_type=property_type,
-                insulation=insulation,
-                radiators=radiators,
-                avilable_space=avilable_space,
-                power_type=power_type,
-                name=name,
-                full_address=full_address,
-                post_code=post_code,
-                phone=phone,
-                email=email
+                heating_type=cleaned_data['heating_type'],
+                location_type=cleaned_data['location_type'],
+                ownership_type=cleaned_data['ownership_type'],
+                heat_pump_type=cleaned_data['heat_pump_type'],
+                duration=cleaned_data['duration'],
+                property_type=cleaned_data['property_type'],
+                insulation=cleaned_data['insulation'],
+                radiators=cleaned_data['radiators'],
+                available_space=cleaned_data['available_space'],
+                power_type=cleaned_data['power_type'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
             )
             heat_pump_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(heat_pump_data['email'], heat_pump_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
             return redirect('/')
-        else:
-            return render(request, 'forms/Heat_Pump_Form.html')
+    else:
+        form = HeatPumpForm()
+    return render(request, 'forms/Heat_Pump_Form.html', {'form': form})
+
+class HomeSecurityForm(forms.Form):
+    ownership = forms.CharField()
+    residency = forms.CharField()
+    age_of_building = forms.CharField()
+    number_of_floors = forms.CharField()
+    square_footage = forms.CharField()
+    number_of_people = forms.CharField()
+    average_age = forms.CharField()
+    usual_stay = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
 
 def HomeSecurityView(request):
-
-        if request.method == 'POST':
-
-            ownership = request.POST.get('ownership')
-            residency = request.POST.get('residency')
-            age_of_building = request.POST.get('age_of_building')
-            number_of_floors = request.POST.get('number_of_floors')
-            square_footage = request.POST.get('square_footage')
-            number_of_people = request.POST.get('number_of_people')
-            average_age = request.POST.get('average_age')
-            usual_stay = request.POST.get('usual_stay')
-
-
-            name = request.POST.get('name')
-            full_address = request.POST.get('full_address')
-            post_code = request.POST.get('post_code')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-
+    if request.method == 'POST':
+        form = HomeSecurityForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
             home_security_data = Q_HomeSecurity(
-                ownership=ownership,
-                residency=residency,
-                age_of_building=age_of_building,
-                number_of_floors=number_of_floors,
-                square_footage=square_footage,
-                number_of_people=number_of_people,
-                average_age=average_age,
-                usual_stay=usual_stay,
-
-                name=name,
-                full_address=full_address,
-                post_code=post_code,
-                phone=phone,
-                email=email
+                ownership=cleaned_data['ownership'],
+                residency=cleaned_data['residency'],
+                age_of_building=cleaned_data['age_of_building'],
+                number_of_floors=cleaned_data['number_of_floors'],
+                square_footage=cleaned_data['square_footage'],
+                number_of_people=cleaned_data['number_of_people'],
+                average_age=cleaned_data['average_age'],
+                usual_stay=cleaned_data['usual_stay'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
             )
             home_security_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(home_security_data['email'], home_security_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
             return redirect('/')
-        else:
-            return render(request, 'forms/Home_Security_form.html')
+    else:
+        form = HomeSecurityForm()
+    return render(request, 'forms/Home_Security_form.html', {'form': form})
+
+class InfraredHeatingForm(forms.Form):
+    ownership = forms.CharField()
+    residency = forms.CharField()
+    heating_type = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
 
 def InfraredHEatingView(request):
-
-        if request.method == 'POST':
-
-            ownership = request.POST.get('ownership')
-            residency = request.POST.get('residency')
-            heating_type = request.POST.get('heating_type')
-            name = request.POST.get('name')
-            full_address = request.POST.get('full_address')
-            post_code = request.POST.get('post_code')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-
+    if request.method == 'POST':
+        form = InfraredHeatingForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
             infrared_heating_data = Q_InfraredHeat(
-                ownership=ownership,
-                residency=residency,
-                heating_type=heating_type,
-            
-                name=name,
-                full_address=full_address,
-                post_code=post_code,
-                phone=phone,
-                email=email
+                ownership=cleaned_data['ownership'],
+                residency=cleaned_data['residency'],
+                heating_type=cleaned_data['heating_type'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
             )
             infrared_heating_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(infrared_heating_data['email'], infrared_heating_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
             return redirect('/')
-        else:
-            return render(request, 'forms/Infrared_heating_form.html')
+    else:
+        form = InfraredHeatingForm()
+    return render(request, 'forms/Infrared_heating_form.html', {'form': form})
+
+class SolarSystemForm(forms.Form):
+    installation_type = forms.CharField()
+    residency = forms.CharField()
+    ownership = forms.CharField()
+    solar_type = forms.CharField()
+    solar_exists = forms.CharField()
+    building_type = forms.CharField()
+    bed_rooms = forms.CharField()
+    kws_usages = forms.CharField()
+    monthly_usages = forms.CharField()
+    avg_electricity_bill = forms.CharField()
+    roof_direction = forms.CharField()
+    roof_window = forms.CharField()
+    roof_shadow_impact = forms.CharField()
+    pitch_type = forms.CharField()
+    installation_duration = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
 
 def SolarSystemView(request):
-
-        if request.method == 'POST':
-
-            installation_type = request.POST.get('installation_type')
-            residency = request.POST.get('residency')
-            ownership = request.POST.get('ownership')
-            solar_type = request.POST.get('solar_type')
-            solar_exists = request.POST.get('solar_exists')
-            building_type = request.POST.get('building_type')
-            bed_rooms = request.POST.get('bed_rooms')
-            kws_usages = request.POST.get('kws_usages')
-            monthly_usages = request.POST.get('monthly_usages')
-            avg_electricity_bill = request.POST.get('avg_electricity_bill')
-            roof_direction = request.POST.get('roof_direction')
-            roof_window = request.POST.get('roof_window')
-            roof_shadow_impact = request.POST.get('roof_shadow_impact')
-            pitch_type = request.POST.get('pitch_type')
-            installation_duration = request.POST.get('installation_duration')
-            name = request.POST.get('name')
-            full_address = request.POST.get('full_address')
-            post_code = request.POST.get('post_code')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-
+    if request.method == 'POST':
+        form = SolarSystemForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
             solar_data = Q_Solar(
-                installation_type=installation_type,
-                residency=residency,
-                ownership=ownership,
-                solar_type=solar_type,
-                solar_exists=solar_exists,
-                building_type=building_type,
-                bed_rooms=bed_rooms,
-                kws_usages=kws_usages,
-                monthly_usages=monthly_usages,
-                avg_electricity_bill=avg_electricity_bill,
-                roof_direction=roof_direction,
-                roof_window=roof_window,
-                roof_shadow_impact=roof_shadow_impact,
-                pitch_type=pitch_type,
-                installation_duration=installation_duration,
-            
-                name=name,
-                full_address=full_address,
-                post_code=post_code,
-                phone=phone,
-                email=email
+                installation_type=cleaned_data['installation_type'],
+                residency=cleaned_data['residency'],
+                ownership=cleaned_data['ownership'],
+                solar_type=cleaned_data['solar_type'],
+                solar_exists=cleaned_data['solar_exists'],
+                building_type=cleaned_data['building_type'],
+                bed_rooms=cleaned_data['bed_rooms'],
+                kws_usages=cleaned_data['kws_usages'],
+                monthly_usages=cleaned_data['monthly_usages'],
+                avg_electricity_bill=cleaned_data['avg_electricity_bill'],
+                roof_direction=cleaned_data['roof_direction'],
+                roof_window=cleaned_data['roof_window'],
+                roof_shadow_impact=cleaned_data['roof_shadow_impact'],
+                pitch_type=cleaned_data['pitch_type'],
+                installation_duration=cleaned_data['installation_duration'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
             )
             solar_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(solar_data['email'], solar_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
             return redirect('/')
-        else:
-            return render(request, 'forms/solar_form.html')
+    else:
+        form = SolarSystemForm()
+    return render(request, 'forms/solar_form.html', {'form': form})
+
+class WindowInsForm(forms.Form):
+    glazing_for = forms.CharField()
+    ownership = forms.CharField()
+    number_of_window = forms.CharField()
+    delivery = forms.CharField()
+    name = forms.CharField()
+    full_address = forms.CharField()
+    post_code = forms.CharField()
+    phone = forms.CharField()
+    email = forms.EmailField()
 
 def WindowInsView(request):
-
-        if request.method == 'POST':
-
-            glazing_for = request.POST.get('glazing_for')
-            ownership = request.POST.get('ownership')
-            number_of_window = request.POST.get('number_of_window')
-            delivery = request.POST.get('delivery')
-
-            name = request.POST.get('name')
-            full_address = request.POST.get('full_address')
-            post_code = request.POST.get('post_code')
-            phone = request.POST.get('phone')
-            email = request.POST.get('email')
-
+    if request.method == 'POST':
+        form = WindowInsForm(request.POST)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
             window_ins_data = Q_Window(
-                glazing_for=glazing_for,
-                ownership=ownership,
-                number_of_window=number_of_window,
-                delivery=delivery,
-            
-                name=name,
-                full_address=full_address,
-                post_code=post_code,
-                phone=phone,
-                email=email
+                glazing_for=cleaned_data['glazing_for'],
+                ownership=cleaned_data['ownership'],
+                number_of_window=cleaned_data['number_of_window'],
+                delivery=cleaned_data['delivery'],
+                name=cleaned_data['name'],
+                full_address=cleaned_data['full_address'],
+                post_code=cleaned_data['post_code'],
+                phone=cleaned_data['phone'],
+                email=cleaned_data['email']
             )
             window_ins_data.save()
-
-            email_thread = threading.Thread(target=booking_email, args=(window_ins_data['email'], window_ins_data['name']))
+            email_thread = threading.Thread(target=booking_email, args=(cleaned_data['email'], cleaned_data['name']))
             email_thread.start()
-
             return redirect('/')
-        else:
-            return render(request, 'forms/window_ins_form.html')
+    else:
+        form = WindowInsForm()
+    return render(request, 'forms/window_ins_form.html', {'form': form})
 
 
 def booking_email(email, name ):
