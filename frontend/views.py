@@ -469,12 +469,13 @@ def WindowInsView(request):
     return render(request, 'forms/window_ins_form.html', {'form': form})
 
 
-def booking_email(email, name ):
+def booking_email(email, name):
     subject = "Acknowledgement of Your Request for Quotation"
     from_email = "info@steuk.co.uk"
+    to = [email, 'info@steuk.co.uk']  # Use the email parameter instead of string 'email'
 
-    html_message = render_to_string('email/email_template.html', {'email': email,  'name':name,})
+    html_message = render_to_string('email/email_template.html', {'email': email, 'name': name})
     plain_message = strip_tags(html_message)
-    email = EmailMultiAlternatives(subject, plain_message, from_email, to=[email,'info@steuk.co.uk',])
+    email = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
     email.attach_alternative(html_message, "text/html")
     email.send()
