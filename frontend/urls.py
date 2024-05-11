@@ -32,6 +32,7 @@ urlpatterns = [
     path('infrared_heating_form/', InfraredHEatingView, name="infrared_heating_form"),
     path('solar_form/', SolarSystemView, name="solar_form"),
     path('window_form/', WindowInsView, name="window_form"),
+    path('package_form/', PackagesView, name="package_form"),
 
     
 ]

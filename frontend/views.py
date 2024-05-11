@@ -209,7 +209,7 @@ def BoilerFormView(request):
                 email=cleaned_data['email']
             )
             boiler_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(boiler_data.email, boiler_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(boiler_data, boiler_data.email,'boiler'))
             email_thread.start()
             return redirect('/')
     else:
@@ -246,7 +246,7 @@ def EVChargerFormView(request):
                 email=cleaned_data['email']
             )
             ev_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(ev_data.email, ev_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(ev_data, ev_data.email,'evCharger'))
             email_thread.start()
             return redirect('/')
     else:
@@ -293,7 +293,7 @@ def HeatPumpFormView(request):
                 email=cleaned_data['email']
             )
             heat_pump_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(heat_pump_data.email, heat_pump_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(heat_pump_data, heat_pump_data.email,'heatpump'))
             email_thread.start()
             return redirect('/')
     else:
@@ -336,7 +336,7 @@ def HomeSecurityView(request):
                 email=cleaned_data['email']
             )
             home_security_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(home_security_data.email, home_security_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(home_security_data, home_security_data.email,'homeSecurity'))
             email_thread.start()
             return redirect('/')
     else:
@@ -369,12 +369,12 @@ def InfraredHEatingView(request):
                 email=cleaned_data['email']
             )
             infrared_heating_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(infrared_heating_data.email, infrared_heating_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(infrared_heating_data, infrared_heating_data.email,'infrared'))
             email_thread.start()
             return redirect('/')
     else:
         form = InfraredHeatingForm()
-    return render(request, 'forms/Infrared_heating_form.html', {'form': form})
+    return render(request, 'forms/Infrared_heating_form.html', {'form': form,})
 
 class SolarSystemForm(forms.Form):
     installation_type = forms.CharField()
@@ -426,7 +426,7 @@ def SolarSystemView(request):
                 email=cleaned_data['email']
             )
             solar_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(solar_data.email, solar_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(solar_data,solar_data.email,'solar'))
             email_thread.start()
             
             return redirect('/')
@@ -463,7 +463,7 @@ def WindowInsView(request):
             )
           
             window_ins_data.save()
-            email_thread = threading.Thread(target=booking_email, args=(window_ins_data.email, window_ins_data.name))
+            email_thread = threading.Thread(target=booking_email, args=(window_ins_data,window_ins_data.email,'window_ins'))
             email_thread.start()
            
             return redirect('/')
@@ -471,16 +471,45 @@ def WindowInsView(request):
         form = WindowInsForm()
     return render(request, 'forms/window_ins_form.html', {'form': form})
 
+def PackagesView(request):
+    packages = Packages.objects.all()
+    if request.method == 'POST':
+        form = PackageForm(request.POST)
+        if form.is_valid():
+            package_data = form.save(commit=False)
+            package_data.save()
+            email_thread = threading.Thread(target=booking_email, args=(package_data, package_data.email, 'package'))
+            email_thread.start()
+            return redirect('/')  # Redirect to desired page after form submission
+    else:
+        form = PackageForm()
+    return render(request, 'forms/package_form.html', {'form': form, 'packages': packages})
 
-def booking_email(email, name):
+def booking_email(form_data, email, form_type):
     subject = "Acknowledgement of Your Request for Quotation"
     from_email = "info@steuk.co.uk"
     to = [email, 'info@steuk.co.uk']  # Use the email parameter instead of string 'email'
 
-    html_message = render_to_string('email/email_template.html', {'email': email, 'name': name})
+    if form_type == 'solar':
+        html_message = render_to_string('email/solar_email_template.html', {'form_data': form_data})
+    elif form_type == 'window_ins':
+        html_message = render_to_string('email/window_ins_email_template.html', {'form_data': form_data})
+    elif form_type == 'infrared':
+        html_message = render_to_string('email/infrared_email_template.html', {'form_data': form_data})
+    elif form_type == 'homeSecurity':
+        html_message = render_to_string('email/homeSecurity_email_template.html', {'form_data': form_data})
+    elif form_type == 'heatpump':
+        html_message = render_to_string('email/heatpump_email_template.html', {'form_data': form_data})
+    elif form_type == 'evCharger':
+        html_message = render_to_string('email/evcharger_email_template.html', {'form_data': form_data})
+    elif form_type == 'boiler':
+        html_message = render_to_string('email/boiler_email_template.html', {'form_data': form_data})
+    else:
+        # Default to a generic email template if form_type is not recognized
+        html_message = render_to_string('email/package_email_template.html', {'form_data': form_data})
+
     plain_message = strip_tags(html_message)
-    
-    # Use a different variable name to avoid conflict
+
     email_message = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
     email_message.attach_alternative(html_message, "text/html")
     email_message.send()

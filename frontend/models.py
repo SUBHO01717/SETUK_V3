@@ -118,7 +118,6 @@ class Projects(models.Model):
     def __str__(self):
         return f"{self.package_name}"
     
-    
 class Q_BoilerData(models.Model):
      property_type=models.CharField(max_length=255,)
      job_type=models.CharField(max_length=255,)
@@ -133,7 +132,6 @@ class Q_BoilerData(models.Model):
      def __str__(self):
          return f"{self.name}"
     
-
 class Q_EVData(models.Model):
      installation_type=models.CharField(max_length=255)
      ownership_type=models.CharField(max_length=255)
@@ -169,8 +167,6 @@ class Q_HeatPumps(models.Model):
      def __str__(self):
          return f"{self.name}"
     
-
-
 class Q_HomeSecurity(models.Model):
      ownership=models.CharField(max_length=255)
      residency=models.CharField(max_length=255)
@@ -189,7 +185,6 @@ class Q_HomeSecurity(models.Model):
 
      def __str__(self):
          return f"{self.name}"
-     
 
 class Q_InfraredHeat(models.Model):
      ownership=models.CharField(max_length=255)
@@ -243,4 +238,15 @@ class Q_Window(models.Model):
      phone=models.CharField(max_length=255, null=True, blank=True)
      email=models.EmailField(null=True, blank=True)
      def __str__(self):
+         return f"{self.name}"
+
+class Q_Packages(models.Model):
+    pack_name=models.ForeignKey(Packages,on_delete=models.CASCADE)
+    name=models.CharField(max_length=255)
+    full_address=models.CharField(max_length=255, null=True, blank=True)
+    post_code=models.CharField(max_length=255, null=True, blank=True)
+    phone=models.CharField(max_length=255, null=True, blank=True)
+    email=models.EmailField(null=True, blank=True)
+    
+    def __str__(self):
          return f"{self.name}"

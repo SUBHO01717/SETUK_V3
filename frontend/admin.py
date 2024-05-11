@@ -21,6 +21,7 @@ admin.site.register(Q_HomeSecurity)
 admin.site.register(Q_InfraredHeat)
 admin.site.register(Q_Solar)
 admin.site.register(Q_Window)
+admin.site.register(Q_Packages)
 
 
 

@@ -12,3 +12,8 @@ class BrandForm(ModelForm):
     class Meta :
         model=Brand
         fields="__all__"
+
+class PackageForm(ModelForm):
+    class Meta :
+        model=Q_Packages
+        fields="__all__"
