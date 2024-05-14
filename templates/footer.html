@@ -4,13 +4,13 @@
 		<div class="container-fluid p-5 bg-black">
 			<div class="container">
 				<div class="row text-light">
-					<div class="col-2">
+					<div class="col-3">
 						{% comment %} <a class="navbar-brand" href="/">
 							<img src="" alt="" width="70" height="auto">
 						</a> {% endcomment %}
 					<a href="/">STEUK.CO.UK</a>
 					</div>
-					<div class="col-4">
+					<div class="col-3">
 						<ul>
 							{% for category in categories %}
 							<li><a class="dropdown-item" href="{% url 'product_list' category.id %}">{{ category.name }}</a></li>
@@ -18,7 +18,7 @@
 							
 						</ul>
 					</div>
-					<div class="col-2">
+					<div class="col-3">
 						<ul>
 							{% for category_outer in service_categories %}
 							<li class="dropend">
@@ -39,7 +39,7 @@
 							
 						</ul>
 					</div>
-					<div class="col-4">
+					<div class="col-3">
 						<h5>SOLAR TECH EXPERTS</h5>
 						<span>Unit -605, 252-262 Romford Road,Forest Gate, London, E7 9HZ, United Kingdom</span><br>
 						<span>(+44) 203 5403555</span> <br>
