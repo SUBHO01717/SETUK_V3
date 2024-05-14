@@ -14,9 +14,9 @@
 						<ul>
 							<h5>Our Products</h5>
 							<hr>
-							<div class="me-2">
+							<div >
 								{% for category in categories %}
-								<li><a class="dropdown-item" href="{% url 'product_list' category.id %}">{{ category.name }}</a></li>
+								<a class="dropdown-item" class="nav-link" href="{% url 'product_list' category.id %}">{{ category.name }}</a>
 								{% endfor %}
 							</div>
 							
