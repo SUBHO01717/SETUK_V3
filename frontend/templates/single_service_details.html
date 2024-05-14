@@ -15,7 +15,7 @@
                 {% if service.image %}
                     <img src="{{ service.image.url }}" class="card-img-top" alt="...">
                 {% else %}
-                    <img src="{% static 'images/product_default.png' %}" class="card-img-top" alt="...">
+                    <img src="{% static 'images/product_default.png' %}" class="card-img-top mb-3 rounded-5 shadow" alt="...">
                 {% endif %}
                 <div class="text-center"> <!-- Centering the buttons -->
                     <a href="{% url 'design' %}" class="btn btn-success">Designing</a>
