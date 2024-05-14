@@ -21,13 +21,12 @@
                         {% if blog.image %}
                         <img src="{{blog.image.url}}" class="card-img-top" alt="...">
                         {% else %}
-                        <img src="{% static 'images/logo.png' %}" class="card-img-top  img-thumbnail" alt="...">
-
+                        <img src="{% static 'images/logo.png' %}" class="card-img-top  img-thumbnail" alt="..." style="height:385px; witdth:auto;">
 
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{blog.title}}</h5>
-                            <span>{{blog.source}}</span> <br> <span class="fw-bold">Date: {{blog.date}}</span>
+                            <span>{{blog.source}}</span> <br> <span class="fw-bold">Date: {{blog.created_at}}</span>
                             <p class="card-text">{{ blog.details |safe| truncatewords:50 }}  <a href="{% url 'blog-details' pk=blog.id %}" >Read more...</a></p>
                         </div>
                     </div>
