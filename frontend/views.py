@@ -133,11 +133,13 @@ def ContactUs(request):
 
     if request.POST:
         form = ContactForm(request.POST)
-        
         if form.is_valid():
-            form.save()
+            contact_instance = form.save(commit=False)
+            contact_instance.save()
+            email_thread = threading.Thread(target=contact_mail, args=(contact_instance, contact_instance.email))
+            email_thread.start()
             return redirect ("/thanks/")
-      
+
     else:
          form = ContactForm()
 
@@ -146,6 +148,17 @@ def ContactUs(request):
     }
 
     return render(request, 'contact.html', context)
+
+def contact_mail(contact_instance, email,):
+    subject = "Thanks we've got your message"
+    from_email = "info@steuk.co.uk"
+    to = [email, 'info@steuk.co.uk']  # Use the email parameter instead of string 'email'
+    html_message= render_to_string('email/contact.html', {'contact_instance': contact_instance})
+    plain_message = strip_tags(html_message)
+
+    email_message = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
+    email_message.attach_alternative(html_message, "text/html")
+    email_message.send()
 
 def Thanks(request):
 
@@ -513,3 +526,5 @@ def booking_email(form_data, email, form_type):
     email_message = EmailMultiAlternatives(subject, plain_message, from_email, to=to)
     email_message.attach_alternative(html_message, "text/html")
     email_message.send()
+
+
