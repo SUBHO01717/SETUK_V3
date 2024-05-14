@@ -13,6 +13,7 @@
 					<div class="col-3">
 						<ul>
 							<h5>Our Products</h5>
+							<hr>
 							{% for category in categories %}
 							<li><a class="dropdown-item" href="{% url 'product_list' category.id %}">{{ category.name }}</a></li>
 							{% endfor %}
@@ -22,6 +23,7 @@
 					<div class="col-3">
 						<ul>
 							<h5>Our Services</h5>
+							<hr>
 							{% for category_outer in service_categories %}
 							<li class="dropend">
 								<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">{{ category_outer.service_category_name }}</a>
