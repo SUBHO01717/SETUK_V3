@@ -28,7 +28,7 @@
 							<hr>
 							<div class="">
 								{% for category_outer in service_categories %}
-								<li class="dropend">
+								<div class="dropend">
 									<a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">{{ category_outer.service_category_name }}</a>
 									<ul class="dropdown-menu">
 										{% if category_outer.services.exists %}
@@ -41,7 +41,7 @@
 											<li><a href="" class="dropdown-item">No Items to Show</a></li>
 										{% endif %}
 									</ul>
-								</li>
+								</div>
 								 {% endfor %}
 							</div>
 							
