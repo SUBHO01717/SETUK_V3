@@ -3,6 +3,15 @@
 {% block content %}
         
 <!--Slider-->
+{% if messages %}
+  {% for message in messages %}
+
+      <div class="alert alert-{{message.tags }} text-center" role="alert" id="alert-message">
+              <h5>{{ message }}</h5>
+      </div>
+  
+  {% endfor %}
+{% endif %}
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000"> <!-- Set interval to 5000 milliseconds (5 seconds) -->
   <div class="carousel-inner">
@@ -235,4 +244,11 @@
 <!--End Why Us-->
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  setTimeout(function() {
+      document.getElementById('alert-message').remove();
+  }, 5000); // 10 seconds in milliseconds
+</script>
+
 {% endblock content %}

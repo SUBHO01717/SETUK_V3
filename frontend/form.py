@@ -31,3 +31,5 @@ class JobApplicationForm(forms.ModelForm):
         today = timezone.now().date()
         # Filter jobs queryset to exclude expired jobs
         self.fields['post'].queryset = Jobs.objects.filter(application_deadline__gte=today)
+
+

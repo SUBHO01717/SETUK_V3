@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load django_bootstrap5 %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Installer & Reseller Registration Form</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a></p>
+    </div>
+
+ 
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">    
+                <h4>Why Solar Tech?</h4>
+                <div>
+                    <ul>
+                        <li class="fs-5 p-1">Access to the UK’s largest renewable product portfolio</li>
+                        <li class="fs-5 p-1">Live pricing and availability, 24/7</li>
+                        <li class="fs-5 p-1">Data Sheets, brochures & warranties</li>
+                        <li class="fs-5 p-1">Easy online quoting with price guarantee</li>
+                        <li class="fs-5 p-1">OpenSolar and MCS integration</li>
+                        <li class="fs-5 p-1">Exclusive access to training and events</li>
+                        <li class="fs-5 p-1">Only UK distributor of Powerwall</li>
+                        <li class="fs-5 p-1">Next day delivery</li>
+                        <li class="fs-5 p-1">Credit options</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12 card">   
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row p-3">
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.full_name.id_for_label }}">FULL NAME</label>
+                                {{ form.full_name }}
+                            </div>
+                        </div> 
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">EMAIL</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.contact.id_for_label }}">CONTACT NUMBER</label>
+                                {{ form.contact }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.account_type.id_for_label }}">USER TYPE</label>
+                                {{ form.account_type }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.post_code.id_for_label }}">POSTAL CODE</label>
+                                {{ form.post_code }}
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.company_name.id_for_label }}">COMPANY NAME</label>
+                                {{ form.company_name }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <div class="form-group">
+                                <label for="{{ form.about_company.id_for_label }}">ABOUT COMPANy</label>
+                                {{ form.about_company }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success m-2">Submit</button>
+                    </div>
+                    <!-- Add other form fields similarly -->
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

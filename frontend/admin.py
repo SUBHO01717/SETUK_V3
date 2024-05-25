@@ -27,3 +27,4 @@ admin.site.register(Jobs)
 admin.site.register(JobApplication)
 
 
+

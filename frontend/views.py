@@ -560,4 +560,4 @@ def JobApplicationView(request):
         form.fields['post'].queryset = Jobs.objects.filter(application_deadline__gte=today)
     
     return render(request, 'job-apply.html', {'form': form})
-  
+

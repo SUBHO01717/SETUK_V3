@@ -37,6 +37,7 @@ urlpatterns = [
     path('career/', CareerView, name="career"),
     path('job-details/<int:pk>', JobDetails, name="job-details"),
     path('job-apply', JobApplicationView, name="job-apply"),
+ 
 
     
 ]

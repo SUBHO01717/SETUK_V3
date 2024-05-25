@@ -55,31 +55,40 @@
 				</ul>
 	 	    </li>
 
-		<li class="nav-item fs-5  me-3">
-			<a class="nav-link" href="{% url 'packages' %}">Packages</a>
-		</li>
-		<li class="nav-item fs-5  me-3">
-			<a class="nav-link" href="{% url 'career' %}">Build Career</a>	
-		</li>
-		<li class="nav-item fs-5  me-3">
-			<a class="nav-link" href="{% url 'blog' %}">Blog</a>
-		</li>
-		<li class="nav-item fs-5  me-3">
-			<a class="nav-link" href="{% url 'contact' %}">Contact</a>
-		</li>
-		
-		
+			<li class="nav-item fs-5  me-3">
+				<a class="nav-link" href="{% url 'packages' %}">Packages</a>
+			</li>
+			<li class="nav-item fs-5  me-3">
+				<a class="nav-link" href="{% url 'career' %}">Build Career</a>	
+			</li>
+			<li class="nav-item fs-5  me-3">
+				<a class="nav-link" href="{% url 'blog' %}">Blog</a>
+			</li>
+			<li class="nav-item fs-5  me-3">
+				<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+			</li>
 
-
-
-
+			
 		</ul>
-
-
-
 	  </div>
+	  
 	</div>
   </nav>
+
+ <div class="container-fluid">
+    <div class="row text-center ">
+        <div class="col-md-4 p-2" style="background-color:#FCDC2A;">
+           <h6><a href="tel:+442035403555" class="nav-link">Call Now</a> </h6>
+        </div>
+		<div class="col-md-4 p-2 bg-success">
+			<h6 class="text-light"><a href="#" class="nav-link" >Portal Login</a></h6>
+		 </div>
+		 <div class="col-md-4 p-2 " style="background-color:#FCDC2A;">
+			<h6 ><a href="{% url 'user_registration' %}" class="nav-link" >Register Today</a></h6>
+		 </div>
+     
+    </div>
+</div>	
 
 
 
