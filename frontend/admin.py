@@ -23,5 +23,7 @@ admin.site.register(Q_Solar)
 admin.site.register(Q_Window)
 admin.site.register(Q_Packages)
 
+admin.site.register(Jobs)
+admin.site.register(JobApplication)
 
 

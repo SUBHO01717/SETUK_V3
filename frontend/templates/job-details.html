@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">{{job.title}}</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> /Career</p>
+    </div>
+
+ 
+    <div class="container p-5">
+
+        <div class="">
+            <div class="card-body">
+              <h3 class="card-title">{{job.title}}</h3> <hr>
+              <span class="card-text"> Job Posted on : {{job.job_post_date}}</span> <br>
+              <span class="card-text text-danger fw-bold"> Application Deadline : {{job.application_deadline}}</span> <br> 
+              <hr>
+              <h3 class="card-title py-3">Job Requirements</h3> 
+                <p>{{job.job_requirements|safe}}</p>
+              <h3 class="card-title py-3">Responsibilities</h3> 
+                <p>{{job.job_resposiblities|safe}}</p>
+
+              <a href="{% url 'job-apply' %}" class="btn btn-success">Apply Now</a>
+            </div>
+        </div>
+ 
+        
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

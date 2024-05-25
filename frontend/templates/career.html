@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid px-0"> 
+    
+    <div class="p-5" style="background-color: #61677A;">
+        <h1 class="text-center text-white">Career Opportunity</h1>
+        <p class="text-center text-white"><a href="/" class="text-decoration-none text-white fw-bold">Home</a> /Career</p>
+    </div>
+
+ 
+    <div class="container p-5">
+        {% if messages %}
+            {% for message in messages %}
+
+                <div class="alert alert-{{message.tags }}" role="alert" id="alert-message">
+                        <h5>{{ message }}</h5>
+                </div>
+             
+            {% endfor %}
+        {% endif %}
+        {% for job in jobs %}
+            {% if job.application_deadline >= today %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ job.title }}</h5>
+                        <p class="card-text"> Posted on: {{ job.job_post_date }} | <b class="text-danger"> Application Deadline: {{ job.application_deadline }}</b></p>
+                        <a href="{% url 'job-details' job.pk %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            {% endif %}
+          {% endfor %}
+    
+        
+    </div>
+</div>
+
+<script>
+    setTimeout(function() {
+        document.getElementById('alert-message').remove();
+    }, 5000); // 10 seconds in milliseconds
+</script>
+
+
+
+{% endblock content %}

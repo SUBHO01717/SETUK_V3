@@ -250,3 +250,28 @@ class Q_Packages(models.Model):
     
     def __str__(self):
          return f"{self.name}"
+    
+
+class Jobs(models.Model):
+    title=models.CharField(max_length=255, null=True, blank=True)
+    job_requirements=RichTextUploadingField(null=True, blank=True)
+    job_resposiblities=RichTextUploadingField(null=True, blank=True)
+    job_post_date=models.DateField()
+    application_deadline=models.DateField()
+    
+    def __str__(self):
+        return f'{self.title}'
+    
+
+class JobApplication(models.Model):
+    post=models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    full_name=models.CharField(max_length=255)
+    email=models.CharField(max_length=255)
+    contact_number=models.CharField(max_length=255)
+    about=models.TextField()
+    indentification_card=models.FileField(upload_to='media/application',blank=True,null=True)
+    cv=models.FileField(upload_to='media/application',blank=True,null=True)
+    certificates=models.FileField(upload_to='media/application',blank=True,null=True)
+
+    def __str__(self):
+        return f"{self.full_name} - {self.post}"

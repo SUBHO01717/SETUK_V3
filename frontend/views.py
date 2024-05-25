@@ -8,6 +8,9 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 import threading
+
+from django.contrib import messages
+from datetime import date
 # Create your views here.
 
 def Home(request):
@@ -528,3 +531,33 @@ def booking_email(form_data, email, form_type):
     email_message.send()
 
 
+def CareerView(request):
+    jobs=Jobs.objects.all()
+    today = date.today()
+    context={
+        'jobs':jobs,
+        'today':today,
+    }
+    return render(request, "career.html", context)
+
+def JobDetails(request,pk):
+    job = Jobs.objects.get(pk=pk)
+    context={
+        'job':job
+    }
+    return render(request, "job-details.html", context)
+
+def JobApplicationView(request):
+    if request.method == 'POST':
+        form = JobApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your application has been successfully submitted.')
+            return redirect('career')  # Replace 'success_url_name' with your actual success URL name
+    else:
+        form = JobApplicationForm()
+        today = timezone.now().date()
+        form.fields['post'].queryset = Jobs.objects.filter(application_deadline__gte=today)
+    
+    return render(request, 'job-apply.html', {'form': form})
+  
